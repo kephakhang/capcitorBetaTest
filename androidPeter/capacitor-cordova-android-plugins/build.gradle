@@ -1,0 +1,60 @@
+buildscript {
+    repositories {
+        jcenter()
+        google()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:3.3.2'
+    }
+}
+
+apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion 28
+    defaultConfig {
+        minSdkVersion 21
+        targetSdkVersion 28
+        versionCode 1
+        versionName "1.0"
+    }
+    lintOptions {
+        abortOnError false
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+}
+
+repositories {
+    google()
+    jcenter()
+    mavenCentral()
+    flatDir{
+        dirs 'src/main/libs', 'libs'
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'src/main/libs', include: ['*.jar'])
+    implementation 'org.apache.cordova:framework:7.0.0'
+    // SUB-PROJECT DEPENDENCIES START
+    implementation 'com.squareup.okhttp3:okhttp-urlconnection:4.4.1'
+    implementation "androidx.appcompat:appcompat:1.1.0"
+    implementation "androidx.lifecycle:lifecycle-extensions:2.2.0"
+    implementation "androidx.lifecycle:lifecycle-viewmodel:2.2.0"
+    // SUB-PROJECT DEPENDENCIES END
+}
+
+// PLUGIN GRADLE EXTENSIONS START
+apply from: "cordova.variables.gradle"
+apply from: "../cordova-plugin-ionic/src/android/cordovapluginionic.gradle"
+apply from: "../cordova-plugin-telerik-imagepicker/src/android/ignorelinterrors.gradle"
+apply from: "../cordova-plugin-telerik-imagepicker/src/android/androidtarget.gradle"
+apply from: "../cordova-support-google-services/build.gradle"
+// PLUGIN GRADLE EXTENSIONS END
+
+for (def func : cdvPluginPostBuildExtras) {
+    func()
+}

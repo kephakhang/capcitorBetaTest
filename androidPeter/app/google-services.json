@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "406771612120",
+    "firebase_url": "https://speechmate-267906.firebaseio.com",
+    "project_id": "speechmate-267906",
+    "storage_bucket": "speechmate-267906.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:406771612120:android:0e85dc2c58779dd3e35aad",
+        "android_client_info": {
+          "package_name": "io.bory.speechmate"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "406771612120-hn6v6b6e77aaug7cukb6d5tk5orup7gs.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA9c7KeiebqQ-Mpg3YVtpqlf5s5_V8nogY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "406771612120-hn6v6b6e77aaug7cukb6d5tk5orup7gs.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

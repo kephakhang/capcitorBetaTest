@@ -1,2 +1,0 @@
-# capcitorBetaTest
-capcitorBetaTest
