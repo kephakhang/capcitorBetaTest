@@ -9,12 +9,18 @@ android {
 
 apply from: "../capacitor-cordova-android-plugins/cordova.variables.gradle"
 dependencies {
-    implementation project(':capacitor-media')
-    implementation "com.squareup.okhttp3:okhttp-urlconnection:4.4.1"
+    implementation "com.squareup.okhttp3:okhttp-urlconnection:3.10.0"
+    implementation 'com.android.support:appcompat-v7:28.0.0'
+    implementation 'com.android.support:support-v4:28.0.0'
+    implementation 'com.android.support:design:28.0.0'
     implementation 'androidx.appcompat:appcompat:1.1.0'
     implementation 'commons-io:commons-io:2.6'
+    implementation 'com.google.android.material:material:1.0.0'
 }
 
+
+apply from: "../cordova-plugin-tts/src/android/build.gradle"
+apply from: "../cordova-plugin-speechrecognition/src/android/build.gradle"
 apply from: "../cordova-plugin-ionic/src/android/cordovapluginionic.gradle"
 apply from: "../cordova-plugin-telerik-imagepicker/src/android/ignorelinterrors.gradle"
 apply from: "../cordova-plugin-telerik-imagepicker/src/android/androidtarget.gradle"

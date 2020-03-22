@@ -1,6 +1,7 @@
 package com.getcapacitor.plugin;
 
 import android.Manifest;
+import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
@@ -124,7 +125,7 @@ public class Camera extends Plugin {
   }
 
   private void showCamera(final PluginCall call) {
-    if (!getActivity().getPackageManager().hasSystemFeature(PackageManager.FEATURE_CAMERA_ANY)) {
+    if (!getActivity().getPackageManager().hasSystemFeature(PackageManager.FEATURE_CAMERA)) {
       call.error(NO_CAMERA_ERROR);
       return;
     }
@@ -223,7 +224,7 @@ public class Camera extends Plugin {
     }
   }
 
-  public void processCameraImage(PluginCall call, Intent data) {
+  public void processCameraImage(PluginCall call) {
     boolean saveToGallery = call.getBoolean("saveToGallery", CameraSettings.DEFAULT_SAVE_IMAGE_TO_GALLERY);
     CameraResultType resultType = getResultType(call.getString("resultType"));
     if(imageFileSavePath == null) {
@@ -470,12 +471,15 @@ public class Camera extends Plugin {
     settings = getSettings(savedCall);
 
     if (requestCode == REQUEST_IMAGE_CAPTURE) {
-      processCameraImage(savedCall, data);
+      processCameraImage(savedCall);
     } else if (requestCode == REQUEST_IMAGE_PICK) {
       processPickedImage(savedCall, data);
-    } else if (requestCode == REQUEST_IMAGE_EDIT) {
+    } else if (requestCode == REQUEST_IMAGE_EDIT && resultCode == Activity.RESULT_OK) {
       isEdited = true;
       processPickedImage(savedCall, data);
+    } else if (resultCode == Activity.RESULT_CANCELED && imageFileSavePath != null) {
+      isEdited = true;
+      processCameraImage(savedCall);
     }
   }
 

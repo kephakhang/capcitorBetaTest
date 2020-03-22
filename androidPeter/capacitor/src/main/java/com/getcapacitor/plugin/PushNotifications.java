@@ -110,6 +110,13 @@ public class PushNotifications extends Plugin {
   }
 
   @PluginMethod()
+  public void requestPermission(PluginCall call) {
+    JSObject result = new JSObject();
+    result.put("granted", true);
+    call.success(result);
+  }
+
+  @PluginMethod()
   public void getDeliveredNotifications(PluginCall call) {
     JSArray notifications = new JSArray();
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {

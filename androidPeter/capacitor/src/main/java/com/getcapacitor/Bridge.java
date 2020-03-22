@@ -143,6 +143,7 @@ public class Bridge {
   public Bridge(Activity context, WebView webView, List<Class<? extends Plugin>> initialPlugins, CordovaInterfaceImpl cordovaInterface, PluginManager pluginManager, CordovaPreferences preferences) {
     this.context = context;
     this.webView = webView;
+//    this.webViewClient = new BridgeWebViewClient(this);
     this.initialPlugins = initialPlugins;
     this.cordovaInterface = cordovaInterface;
     this.preferences = preferences;
@@ -539,7 +540,7 @@ public class Bridge {
             if (call.isSaved()) {
               saveCall(call);
             }
-          } catch(PluginLoadException | InvalidPluginMethodException | PluginInvocationException ex) {
+          } catch(PluginLoadException | InvalidPluginMethodException ex) {
             Log.e(LOG_TAG, "Unable to execute plugin method", ex);
           } catch(Exception ex) {
             Log.e(LOG_TAG, "Serious error executing plugin", ex);
@@ -843,6 +844,15 @@ public class Bridge {
   public void onStop() {
     for (PluginHandle plugin : plugins.values()) {
       plugin.getInstance().handleOnStop();
+    }
+  }
+
+  /**
+   * Handle onDestroy lifecycle event and notify the plugins
+   */
+  public void onDestroy() {
+    for (PluginHandle plugin : plugins.values()) {
+      plugin.getInstance().handleOnDestroy();
     }
   }
 

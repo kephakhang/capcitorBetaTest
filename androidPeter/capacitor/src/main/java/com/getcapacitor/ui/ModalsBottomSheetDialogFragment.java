@@ -15,12 +15,12 @@ import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import com.getcapacitor.JSArray;
 import com.getcapacitor.JSObject;
 import com.getcapacitor.LogUtils;
+import com.google.android.material.bottomsheet.BottomSheetBehavior;
+import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import com.google.android.material.bottomsheet.BottomSheetBehavior;
-import com.google.android.material.bottomsheet.BottomSheetDialogFragment ;
 import java.util.List;
 
 public class ModalsBottomSheetDialogFragment extends BottomSheetDialogFragment {
@@ -115,10 +115,9 @@ public class ModalsBottomSheetDialogFragment extends BottomSheetDialogFragment {
       CoordinatorLayout.LayoutParams params = (CoordinatorLayout.LayoutParams) ((View) parentLayout.getParent()).getLayoutParams();
       CoordinatorLayout.Behavior behavior = params.getBehavior();
 
-      //ToDo 임시로 막은 추후 체크 필요
-//      if (behavior != null && behavior instanceof BottomSheetBehavior) {
-//        ((BottomSheetBehavior) behavior).setBottomSheetCallback(mBottomSheetBehaviorCallback);
-//      }
+      if (behavior != null && behavior instanceof BottomSheetBehavior) {
+        ((BottomSheetBehavior) behavior).setBottomSheetCallback(mBottomSheetBehaviorCallback);
+      }
     } catch (JSONException ex) {
       Log.e(LogUtils.getCoreTag(), "JSON error processing an option for showActions", ex);
     }

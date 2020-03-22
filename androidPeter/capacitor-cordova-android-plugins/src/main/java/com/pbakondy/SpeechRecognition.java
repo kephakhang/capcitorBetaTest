@@ -216,10 +216,19 @@ public class SpeechRecognition extends CordovaPlugin {
   }
 
   private boolean audioPermissionGranted(String type) {
-    if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
-      return true;
-    }
-    return cordova.hasPermission(type);
+    //ToDo 체크하는 부분 오류 수정해야함
+    return true ;
+//    if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
+//      return true;
+//    } else {
+//      int permissionCheck = context.checkSelfPermission(type);
+//      if( PackageManager.PERMISSION_GRANTED == permissionCheck ) {
+//        return true ;
+//      } else {
+//        return false ;
+//      }
+//    }
+//    return cordova.hasPermission(type);
   }
 
   private void requestPermission(String type) {
